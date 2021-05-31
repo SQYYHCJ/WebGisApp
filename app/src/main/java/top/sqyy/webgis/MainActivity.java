@@ -11,8 +11,10 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.LogoPosition;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public BaiduMap mBaiduMap = null;
     private LocationClient mLocationClient = null;
     private LatLng currentLocation = null;
+    private UiSettings mUiSettings = null;
 
 
     @Override
@@ -34,6 +37,17 @@ public class MainActivity extends AppCompatActivity {
 
         mMapView = findViewById(R.id.bmapView);
 
+////        显示比例尺
+//        mMapView.showScaleControl(false);
+//
+////        缩放按钮设置
+//        mMapView.showZoomControls(false);
+
+//        logo位置设置
+//        mMapView.setLogoPosition(LogoPosition.logoPostionleftTop);
+//
+//        mMapView.setPadding(50,100,50,100);
+
         mBaiduMap = mMapView.getMap();
 ////        卫星地图
 //        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
@@ -43,9 +57,17 @@ public class MainActivity extends AppCompatActivity {
 ////        交通地图
 //        mBaiduMap.setTrafficEnabled(true);
 
-        mBaiduMap.setBaiduHeatMapEnabled(true);
+
+////        热力图
+//        mBaiduMap.setBaiduHeatMapEnabled(true);
 ////        空白地图
 //        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NONE);
+
+//        设置指南针
+        mUiSettings = mBaiduMap.getUiSettings();
+        mUiSettings.setCompassEnabled(false);
+
+
         mBaiduMap.setMyLocationEnabled(true);
 
         mLocationClient = new LocationClient(this);
