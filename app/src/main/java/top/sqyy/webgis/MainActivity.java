@@ -35,6 +35,17 @@ public class MainActivity extends AppCompatActivity {
         mMapView = findViewById(R.id.bmapView);
 
         mBaiduMap = mMapView.getMap();
+////        卫星地图
+//        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
+//        标准地图
+        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
+
+////        交通地图
+//        mBaiduMap.setTrafficEnabled(true);
+
+        mBaiduMap.setBaiduHeatMapEnabled(true);
+////        空白地图
+//        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NONE);
         mBaiduMap.setMyLocationEnabled(true);
 
         mLocationClient = new LocationClient(this);
