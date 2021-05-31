@@ -15,5 +15,19 @@
         android:orderInCategory="100"
         android:title="绘制自定义点"/>
 
+    <item
+        android:id="@+id/drawDottedLine"
+        android:orderInCategory="100"
+        android:title="绘制虚线"/>
+    <item
+        android:id="@+id/drawColorLine"
+        android:orderInCategory="100"
+        android:title="绘制变色线"/>
+
+    <item
+        android:id="@+id/drawClickLine"
+        android:orderInCategory="100"
+        android:title="点击线事件"/>
+
 
 </menu>
