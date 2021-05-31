@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         mMapView = findViewById(R.id.bmapView);
 
+
 ////        显示比例尺
 //        mMapView.showScaleControl(false);
 //
@@ -108,13 +109,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.drawLine) {
             mBaiduMap.clear();
             //构建折线点坐标,
