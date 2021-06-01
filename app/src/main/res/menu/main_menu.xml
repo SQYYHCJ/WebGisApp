@@ -115,6 +115,21 @@
                 android:orderInCategory="100"
                 android:title="添加信息框"
                 app:showAsAction="never" />
+            <item
+                android:id="@+id/ddh"
+                android:orderInCategory="100"
+                android:title="点动画"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/panAnimate"
+                android:orderInCategory="100"
+                android:title="平移下落"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/panJump"
+                android:orderInCategory="100"
+                android:title="跳跃点"
+                app:showAsAction="never" />
 
         </menu>
     </item>

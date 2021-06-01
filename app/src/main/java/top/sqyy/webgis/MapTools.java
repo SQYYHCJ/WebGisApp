@@ -15,6 +15,7 @@ import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.OverlayOptions;
@@ -267,4 +268,60 @@ public class MapTools {
         //使InfoWindow生效
         mBaiduMap.showInfoWindow(mInfoWindow);
     }
+
+    //点标记动画
+    public static void ddh(BaiduMap mBaiduMap){
+        mBaiduMap.clear();
+        //构造Icon列表
+        // 初始化bitmap 信息，不用时及时 recycle
+        BitmapDescriptor bdA = BitmapDescriptorFactory.fromResource(R.drawable.icon_marka);
+        BitmapDescriptor bdB = BitmapDescriptorFactory.fromResource(R.drawable.icon_markb);
+        BitmapDescriptor bdC = BitmapDescriptorFactory.fromResource(R.drawable.icon_markc);
+        ArrayList<BitmapDescriptor> giflist = new ArrayList<BitmapDescriptor>();
+        giflist.add(bdA);
+        giflist.add(bdB);
+        giflist.add(bdC);
+        //Marker位置坐标
+        LatLng llD = new LatLng(30.526779, 114.405241);
+
+        //构造MarkerOptions对象
+        MarkerOptions ooD = new MarkerOptions()
+                .position(llD)
+                .icons(giflist)
+                .zIndex(0)
+                .period(20);//定义刷新的帧间隔
+        //在地图上展示包含帧动画的Marker
+        Overlay mMarkerD = (Marker) (mBaiduMap.addOverlay(ooD));
+    }
+    //  平移下落动画
+    public static void panAnimate(BaiduMap mBaiduMap) {
+        mBaiduMap.clear();
+        LatLng llC = new LatLng(30.526779, 114.405241);
+        BitmapDescriptor bitmap = BitmapDescriptorFactory
+                .fromResource(R.drawable.icon_marka);
+        //构建MarkerOption，用于在地图上添加Marker
+        MarkerOptions ooA = new MarkerOptions()
+                .position(llC)
+                .icon(bitmap);
+        //设置掉下动画
+        ooA.animateType(MarkerOptions.MarkerAnimateType.drop);
+        /* 在地图上添加Marker，并显示 */
+        mBaiduMap.addOverlay(ooA);
+    }
+    //跳跃动画
+    public static void panJump(BaiduMap mBaiduMap) {
+        mBaiduMap.clear();
+        LatLng llC = new LatLng(30.526779, 114.405241);
+        BitmapDescriptor bitmap = BitmapDescriptorFactory
+                .fromResource(R.drawable.icon_marka);
+        //构建MarkerOption，用于在地图上添加Marker
+        MarkerOptions ooA = new MarkerOptions()
+                .position(llC)
+                .icon(bitmap);
+        //设置掉下动画
+        ooA.animateType(MarkerOptions.MarkerAnimateType.jump);
+        /* 在地图上添加Marker，并显示 */
+        mBaiduMap.addOverlay(ooA);
+    }
+
 }

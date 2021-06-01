@@ -230,6 +230,18 @@ public class MainActivity extends AppCompatActivity {
             MapTools.addInfoWindow(mBaiduMap,MainActivity.this);
             return true;
         }
+        if (id == R.id.ddh) {
+            MapTools.ddh(mBaiduMap);
+            return true;
+        }
+        if (id == R.id.panAnimate) {
+            MapTools.panAnimate(mBaiduMap);
+            return true;
+        }
+        if (id == R.id.panJump) {
+            MapTools.panJump(mBaiduMap);
+            return true;
+        }
 
 
 
