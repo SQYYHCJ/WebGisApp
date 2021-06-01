@@ -34,4 +34,5 @@
     <string name="citySearch">城市内搜索</string>
     <string name="nearSearch">周边搜索</string>
     <string name="squareSearch">矩形搜索</string>
+    <string name="transForm">地理编码</string>
 </resources>

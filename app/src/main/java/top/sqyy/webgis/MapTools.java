@@ -1,6 +1,7 @@
 package top.sqyy.webgis;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.widget.Button;
@@ -30,6 +31,12 @@ import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
 import com.baidu.mapapi.search.core.SearchResult;
+import com.baidu.mapapi.search.geocode.GeoCodeOption;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
 import com.baidu.mapapi.search.poi.PoiBoundSearchOption;
 import com.baidu.mapapi.search.poi.PoiCitySearchOption;
@@ -459,12 +466,6 @@ public class MapTools {
             }
         };
         mPoiSearch.setOnGetPoiSearchResultListener(listener);
-        /**
-         *  PoiCiySearchOption 设置检索属性
-         *  city 检索城市
-         *  keyword 检索内容关键字
-         *  pageNum 分页页码
-         */
         mPoiSearch.searchInCity(new PoiCitySearchOption()
                 .city("武汉") //必填
                 .keyword("超市") //必填
@@ -554,5 +555,78 @@ public class MapTools {
                 .bound(searchBounds)
                 .keyword("美食"));
         mPoiSearch.destroy();
+    }
+
+
+    //地址转坐标
+    public static void locationToCoor(BaiduMap mBaiduMap,final Context context) {
+        //清除地图上的所有覆盖物
+        mBaiduMap.clear();
+        GeoCoder mCoder = GeoCoder.newInstance();
+        OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
+            @Override
+            public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
+                if (null != geoCodeResult && null != geoCodeResult.getLocation()) {
+                    if (geoCodeResult == null || geoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+                        //没有检索到结果
+                        return;
+                    } else {
+                        double latitude = geoCodeResult.getLocation().latitude;
+                        double longitude = geoCodeResult.getLocation().longitude;
+                        AlertDialog.Builder ab=new AlertDialog.Builder(context);  //(普通消息框)
+                        ab.setTitle("地理编码（转坐标）");  //设置标题
+                        ab.setMessage(latitude+","+longitude);//设置消息内容
+                        ab.show();//显示弹出框
+
+                    }
+                }
+            }
+            @Override
+            public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+
+            }
+        };
+        mCoder.setOnGetGeoCodeResultListener(listener);
+        //city 和 address是必填项
+        mCoder.geocode(new GeoCodeOption()
+                .city("武汉")
+                .address("武汉市洪山区鲁磨路388号中国地质大学"));
+        mCoder.destroy();
+    }
+    //坐标转地址
+    public static void coorToLocation(BaiduMap mBaiduMap,final Context context) {
+        //清除地图上的所有覆盖物
+        mBaiduMap.clear();
+        GeoCoder mCoder = GeoCoder.newInstance();
+        OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
+            @Override
+            public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
+
+            }
+
+            @Override
+            public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+                if (reverseGeoCodeResult == null || reverseGeoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+                    //没有找到检索结果
+                    return;
+                } else {
+                    //详细地址
+                    String address = reverseGeoCodeResult.getAddress();
+                    //行政区号
+                    int adCode = reverseGeoCodeResult. getCityCode();
+                    AlertDialog.Builder ab=new AlertDialog.Builder(context);  //(普通消息框)
+                    ab.setTitle("地理编码（转地址）");  //设置标题
+                    ab.setMessage(address);//设置消息内容
+                    ab.show();//显示弹出框
+                }
+            }
+        };
+        mCoder.setOnGetGeoCodeResultListener(listener);
+        LatLng point = new LatLng(30.52632,114.407898);
+        mCoder.reverseGeoCode(new ReverseGeoCodeOption()
+                .location(point)
+                // POI召回半径，允许设置区间为0-1000米，超过1000米按1000米召回。默认值为1000
+                .radius(500));
+        mCoder.destroy();
     }
 }

@@ -179,8 +179,24 @@
                 android:title="@string/squareSearch"
                 app:showAsAction="never" />
         </menu>
+    </item>
 
-
+    <item
+        android:id="@+id/transForm"
+        android:orderInCategory="102"
+        android:title="@string/transForm">
+        <menu>
+            <item
+                android:id="@+id/locationToCoor"
+                android:orderInCategory="100"
+                android:title="地理编码（转坐标）"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/coorToLocation"
+                android:orderInCategory="100"
+                android:title="地理编码（转地址）"
+                app:showAsAction="never" />
+        </menu>
 
     </item>
 
