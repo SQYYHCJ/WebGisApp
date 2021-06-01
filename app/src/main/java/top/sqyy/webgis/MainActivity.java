@@ -14,6 +14,7 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.HeatMap;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationClient mLocationClient = null;
     private LatLng currentLocation = null;
     private UiSettings mUiSettings = null;
-    private boolean hasLocated = true;
+    HeatMap mCustomHeatMap = null;
 
 
     @Override
@@ -135,15 +136,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         ArrayList<Integer> menulist = new ArrayList<>();
-        menulist.add(R.id.line);
-        menulist.add(R.id.point);
-        if (menulist.contains(id)){
-
+        menulist.add(R.id.polygon);
+        menulist.add(R.id.show);
+        menulist.add(R.id.adde);
+        menulist.add(R.id.overlay);
+        if (id == R.id.point ||id == R.id.line){
             setMyPosition();
             return true;
         }
-
-        if (id == R.id.polygon ||id == R.id.show||id == R.id.adde){
+        if (menulist.contains(id)){
             MapTools.setZoom(mBaiduMap,currentLocation);
             return true;
         }
@@ -184,8 +185,6 @@ public class MainActivity extends AppCompatActivity {
             mBaiduMap.setBaiduHeatMapEnabled(true);
             return true;
         }
-
-
         if (id == R.id.drawPoint){
             MapTools.drawPoint(mBaiduMap);
             return true;
@@ -240,6 +239,14 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == R.id.panJump) {
             MapTools.panJump(mBaiduMap);
+            return true;
+        }
+        if (id == R.id.groundOvelay) {
+            MapTools.groundOvelay(mBaiduMap);
+            return true;
+        }
+        if (id == R.id.customHeatMap) {
+            MapTools.customHeatMap(mBaiduMap,mCustomHeatMap);
             return true;
         }
 

@@ -11,6 +11,9 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.CircleOptions;
+import com.baidu.mapapi.map.Gradient;
+import com.baidu.mapapi.map.GroundOverlayOptions;
+import com.baidu.mapapi.map.HeatMap;
 import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
@@ -25,10 +28,12 @@ import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.map.Stroke;
 import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.LatLngBounds;
 
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MapTools {
 
@@ -324,4 +329,54 @@ public class MapTools {
         mBaiduMap.addOverlay(ooA);
     }
 
+    public static void groundOvelay(BaiduMap mBaiduMap) {
+        mBaiduMap.clear();
+        //定义Ground的显示地理范围
+        LatLng southwest = new LatLng(30.527123, 114.405671);
+        LatLng northeast = new LatLng(30.526779, 114.405241);
+        LatLngBounds bounds = new LatLngBounds.Builder()
+                .include(northeast)
+                .include(southwest)
+                .build();
+        //定义Ground显示的图片
+        BitmapDescriptor bdGround = BitmapDescriptorFactory.fromResource(R.drawable.ground_overlay);
+        //定义GroundOverlayOptions对象
+        OverlayOptions ooGround = new GroundOverlayOptions()
+                .positionFromBounds(bounds)
+                .image(bdGround)
+                .transparency(0.8f); //覆盖物透明度
+        //在地图中添加Ground覆盖物
+        mBaiduMap.addOverlay(ooGround);
+    }
+    //自定义热力图
+    public static void customHeatMap(BaiduMap mBaiduMap,HeatMap mCustomHeatMap) {
+        mBaiduMap.clear();
+        //设置渐变颜色值
+        int[] DEFAULT_GRADIENT_COLORS = {Color.rgb(102, 225, 0), Color.rgb(255, 0, 0)};
+        //设置渐变颜色起始值
+        float[] DEFAULT_GRADIENT_START_POINTS = {0.2f, 1f};
+        //构造颜色渐变对象
+        Gradient gradient = new Gradient(DEFAULT_GRADIENT_COLORS, DEFAULT_GRADIENT_START_POINTS);
+        //以下数据为随机生成地理位置点，开发者根据自己的实际业务，传入自有位置数据即可
+        List<LatLng> randomList = new ArrayList<LatLng>();
+        Random r = new Random();
+        for (int i = 0; i < 500; i++) {
+            // 116.220000,39.780000 116.570000,40.150000 114.404544,30.524177
+            int rlat = r.nextInt(3700);
+            int rlng = r.nextInt(3700);
+            int lat = 30524177 + rlat;
+            int lng = 114404544 + rlng;
+            LatLng ll = new LatLng(lat / 1E6, lng / 1E6);
+            randomList.add(ll);
+        }
+        //构造HeatMap
+        //在大量热力图数据情况下，build过程相对较慢，建议放在新建线程实现
+        mCustomHeatMap = new HeatMap.Builder()
+                .data(randomList)
+                .gradient(gradient)
+                .build();
+        //在地图上添加自定义热力图
+        mBaiduMap.addHeatMap(mCustomHeatMap);
+
+    }
 }

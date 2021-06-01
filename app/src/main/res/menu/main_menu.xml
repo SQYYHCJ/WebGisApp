@@ -6,49 +6,48 @@
     <item
         android:id="@+id/show"
         android:orderInCategory="102"
-        android:title="显示操作">
+        android:title="@string/show">
         <menu>
             <item
                 android:id="@+id/showLocation"
                 android:orderInCategory="101"
-                android:title="显示定位"/>
+                android:title="@string/showLocation"/>
             <item
                 android:id="@+id/ptType"
                 android:orderInCategory="101"
-                android:title="普通地图"/>
+                android:title="@string/ptType"/>
             <item
                 android:id="@+id/wxType"
                 android:orderInCategory="101"
-                android:title="卫星地图"/>
+                android:title="@string/wxType"/>
             <item
                 android:id="@+id/kbType"
                 android:orderInCategory="101"
-                android:title="空白地图"/>
+                android:title="@string/kbType"/>
             <item
                 android:id="@+id/lkType"
                 android:orderInCategory="101"
-                android:title="实时路况图图"/>
+                android:title="@string/lkType"/>
             <item
                 android:id="@+id/rlType"
                 android:orderInCategory="101"
-                android:title="热力图"/>
+                android:title="@string/rlType"/>
         </menu>
     </item>
 
     <item
     android:id="@+id/point"
     android:orderInCategory="102"
-    android:title="点操作">
-
+    android:title="@string/point">
         <menu>
             <item
                 android:id="@+id/drawPoint"
                 android:orderInCategory="102"
-                android:title="绘制点"/>
+                android:title="@string/drawPoint"/>
             <item
                 android:id="@+id/drawCustomPoint"
                 android:orderInCategory="101"
-                android:title="绘制自定义点"/>
+                android:title="@string/drawCustomPoint"/>
         </menu>
     </item>
 
@@ -57,82 +56,100 @@
     <item
         android:id="@+id/line"
         android:orderInCategory="102"
-        android:title="线操作">
+        android:title="@string/line">
         <menu>
             <item
                 android:id="@+id/drawLine"
                 android:orderInCategory="101"
-                android:title="绘制线"/>
+                android:title="@string/drawLine"/>
             <item
                 android:id="@+id/drawDottedLine"
                 android:orderInCategory="101"
-                android:title="绘制虚线"/>
+                android:title="@string/drawDottedLine"/>
             <item
                 android:id="@+id/drawColorLine"
                 android:orderInCategory="101"
-                android:title="绘制变色线"/>
+                android:title="@string/drawColorLine"/>
 
             <item
                 android:id="@+id/drawClickLine"
                 android:orderInCategory="101"
-                android:title="点击线事件"/>
+                android:title="@string/drawClickLine"/>
             <item
                 android:id="@+id/drawHuLine"
                 android:orderInCategory="101"
-                android:title="绘制弧线"/>
+                android:title="@string/drawHuLine"/>
         </menu>
     </item>
     <item
         android:id="@+id/polygon"
         android:orderInCategory="102"
-        android:title="面操作">
-        >
+        android:title="@string/polygon">
        <menu>
            <item
                android:id="@+id/drowPolygon"
                android:orderInCategory="101"
-               android:title="绘制面"/>
+               android:title="@string/drowPolygon"/>
            <item
                android:id="@+id/drawCircle"
                android:orderInCategory="101"
-               android:title="绘制圆"/>
+               android:title="@string/drawCircle"/>
 
        </menu>
     </item>
     <item
         android:id="@+id/adde"
         android:orderInCategory="102"
-        android:title="添加">
-        >
+        android:title="@string/adde">
         <menu>
             <item
                 android:id="@+id/addFont"
                 android:orderInCategory="100"
-                android:title="文字覆盖物"
+                android:title="@string/addFont"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/addInfoWindow"
                 android:orderInCategory="100"
-                android:title="添加信息框"
+                android:title="@string/addInfoWindow"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/ddh"
                 android:orderInCategory="100"
-                android:title="点动画"
+                android:title="@string/ddh"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/panAnimate"
                 android:orderInCategory="100"
-                android:title="平移下落"
+                android:title="@string/panAnimate"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/panJump"
                 android:orderInCategory="100"
-                android:title="跳跃点"
+                android:title="@string/panJump"
                 app:showAsAction="never" />
 
         </menu>
     </item>
+    <item
+        android:id="@+id/overlay"
+        android:orderInCategory="102"
+        android:title="OverLay">
+        <menu>
+            <item
+                android:id="@+id/groundOvelay"
+                android:orderInCategory="100"
+                android:title="@string/groundOvelay"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/customHeatMap"
+                android:orderInCategory="100"
+                android:title="@string/customHeatMap"
+                app:showAsAction="never" />
+        </menu>
+
+    </item>
+
+
 
 
 

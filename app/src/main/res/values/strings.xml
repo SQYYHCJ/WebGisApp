@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">webgis</string>
+    <string name="show">显示操作</string>
+    <string name="showLocation">显示定位</string>
+    <string name="ptType">普通地图</string>
+    <string name="wxType">卫星地图</string>
+    <string name="kbType">空白地图</string>
+    <string name="lkType">实时路况图图</string>
+    <string name="rlType">热力图</string>
+    <string name="point">点操作</string>
+    <string name="drawPoint">绘制点</string>
+    <string name="drawCustomPoint">绘制自定义点</string>
+    <string name="line">线操作</string>
+    <string name="drawLine">绘制线</string>
+    <string name="drawDottedLine">绘制虚线</string>
+    <string name="drawColorLine">绘制变色线</string>
+    <string name="drawClickLine">点击线事件</string>
+    <string name="drawHuLine">绘制弧线</string>
+    <string name="polygon">面操作</string>
+    <string name="drowPolygon">绘制面</string>
+    <string name="drawCircle">绘制圆</string>
+    <string name="adde">添加</string>
+    <string name="addFont">文字覆盖物</string>
+    <string name="addInfoWindow">添加信息框</string>
+    <string name="ddh">点动画</string>
+    <string name="panAnimate">平移下落</string>
+    <string name="panJump">跳跃点</string>
+    <string name="groundOvelay">图片覆盖物</string>
+    <string name="customHeatMap">自定义热力图</string>
 </resources>
