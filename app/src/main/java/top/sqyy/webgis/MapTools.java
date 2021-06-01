@@ -1,7 +1,9 @@
 package top.sqyy.webgis;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.baidu.mapapi.map.ArcOptions;
@@ -9,6 +11,7 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.CircleOptions;
+import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
@@ -19,7 +22,9 @@ import com.baidu.mapapi.map.PolygonOptions;
 import com.baidu.mapapi.map.Polyline;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.map.Stroke;
+import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.model.LatLng;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -203,7 +208,7 @@ public class MapTools {
     public static void setZoom(BaiduMap mBaiduMap ,LatLng currentLocation) {
         mBaiduMap.clear();
         currentLocation = new LatLng(30.52632, 114.407898);
-        MapStatus mMapStatus = new MapStatus.Builder().target(currentLocation).zoom(19).build();
+        MapStatus mMapStatus = new MapStatus.Builder().target(currentLocation).zoom(18).build();
         MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
         mBaiduMap.setMapStatus(mMapStatusUpdate);
 
@@ -228,5 +233,38 @@ public class MapTools {
         mBaiduMap.setBaiduHeatMapEnabled(false);
         //普通地图 ,mBaiduMap是地图控制器对象
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
+    }
+
+    public static void addFont(BaiduMap mBaiduMap) {
+        mBaiduMap.clear();
+        //文字覆盖物位置坐标
+        LatLng llText = new LatLng(30.526779, 114.405241);
+
+        //构建TextOptions对象
+        OverlayOptions mTextOptions = new TextOptions()
+                .text("百度地图SDK") //文字内容
+                .bgColor(0xAAFFFF00) //背景色
+                .fontSize(24) //字号
+                .fontColor(0xFFFF00FF) //文字颜色
+                .rotate(-30) //旋转角度
+                .position(llText);
+        //在地图上显示文字覆盖物
+        Overlay mText = mBaiduMap.addOverlay(mTextOptions);
+    }
+    @SuppressLint("SetTextI18n")
+    public static void addInfoWindow(BaiduMap mBaiduMap, final Context context) {
+        mBaiduMap.clear();
+        //文字覆盖物位置坐标
+        LatLng point = new LatLng(30.526779, 114.405241);
+        //用来构造InfoWindow的Button
+        Button button = new Button(context.getApplicationContext());
+        button.setBackgroundResource(R.drawable.popup);
+        button.setText("InfoWindow");
+        //构造InfoWindow
+        //point 描述的位置点
+        //-100 InfoWindow相对于point在y轴的偏移量
+        InfoWindow mInfoWindow = new InfoWindow(button, point, -100);
+        //使InfoWindow生效
+        mBaiduMap.showInfoWindow(mInfoWindow);
     }
 }

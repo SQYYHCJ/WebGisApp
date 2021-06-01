@@ -99,6 +99,25 @@
 
        </menu>
     </item>
+    <item
+        android:id="@+id/adde"
+        android:orderInCategory="102"
+        android:title="添加">
+        >
+        <menu>
+            <item
+                android:id="@+id/addFont"
+                android:orderInCategory="100"
+                android:title="文字覆盖物"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/addInfoWindow"
+                android:orderInCategory="100"
+                android:title="添加信息框"
+                app:showAsAction="never" />
+
+        </menu>
+    </item>
 
 
 

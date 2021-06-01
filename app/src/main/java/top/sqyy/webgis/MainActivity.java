@@ -3,12 +3,9 @@ package top.sqyy.webgis;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -17,19 +14,11 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
-import com.baidu.mapapi.map.BitmapDescriptor;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
-import com.baidu.mapapi.map.LogoPosition;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationData;
-import com.baidu.mapapi.map.Overlay;
-import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.map.Polyline;
-import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
 
@@ -130,26 +119,7 @@ public class MainActivity extends AppCompatActivity {
         mLocationClient.requestLocation();
     }
 
-    private void initLocation() {
-        LocationClientOption option = new LocationClientOption();
-        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy
-        );
-        option.setCoorType("bd09ll");
-        int span = 100;
-        option.setScanSpan(span);
-        option.setIsNeedAddress(true);
-        option.setOpenGps(true);
-        option.setLocationNotify(true);
-        option.setIsNeedLocationDescribe(true);
 
-        option.setIsNeedLocationPoiList(true);
-        option.setIgnoreKillProcess(false);
-        option.setOpenGps(true); // ��gps
-
-        option.SetIgnoreCacheException(false);
-        option.setEnableSimulateGps(false);
-        mLocationClient.setLocOption(option);
-    }
 
 
     @Override
@@ -167,6 +137,16 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Integer> menulist = new ArrayList<>();
         menulist.add(R.id.line);
         menulist.add(R.id.point);
+        if (menulist.contains(id)){
+
+            setMyPosition();
+            return true;
+        }
+
+        if (id == R.id.polygon ||id == R.id.show||id == R.id.adde){
+            MapTools.setZoom(mBaiduMap,currentLocation);
+            return true;
+        }
 
         if (id == R.id.showLocation) {
             showMylocation();
@@ -206,16 +186,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-        if (menulist.contains(id)){
-            setMyPosition();
-            return true;
-        }
-
-        if (id == R.id.polygon ||id == R.id.show){
-            MapTools.setZoom(mBaiduMap,currentLocation);
-            return true;
-        }
         if (id == R.id.drawPoint){
             MapTools.drawPoint(mBaiduMap);
             return true;
@@ -250,6 +220,14 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == R.id.drawCircle) {
             MapTools.drawCircle(mBaiduMap);
+            return true;
+        }
+        if (id == R.id.addFont) {
+            MapTools.addFont(mBaiduMap);
+            return true;
+        }
+        if (id == R.id.addInfoWindow) {
+            MapTools.addInfoWindow(mBaiduMap,MainActivity.this);
             return true;
         }
 
@@ -303,6 +281,26 @@ public class MainActivity extends AppCompatActivity {
         mMapView=null;
         super.onDestroy();
 
+    }
+    private void initLocation() {
+        LocationClientOption option = new LocationClientOption();
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy
+        );
+        option.setCoorType("bd09ll");
+        int span = 100;
+        option.setScanSpan(span);
+        option.setIsNeedAddress(true);
+        option.setOpenGps(true);
+        option.setLocationNotify(true);
+        option.setIsNeedLocationDescribe(true);
+
+        option.setIsNeedLocationPoiList(true);
+        option.setIgnoreKillProcess(false);
+        option.setOpenGps(true); // ��gps
+
+        option.SetIgnoreCacheException(false);
+        option.setEnableSimulateGps(false);
+        mLocationClient.setLocOption(option);
     }
 
 
