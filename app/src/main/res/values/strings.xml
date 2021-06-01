@@ -35,4 +35,5 @@
     <string name="nearSearch">周边搜索</string>
     <string name="squareSearch">矩形搜索</string>
     <string name="transForm">地理编码</string>
+    <string name="routePlan">路线规划</string>
 </resources>

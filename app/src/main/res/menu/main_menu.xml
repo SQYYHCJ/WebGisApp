@@ -197,7 +197,24 @@
                 android:title="地理编码（转地址）"
                 app:showAsAction="never" />
         </menu>
+    </item>
 
+    <item
+        android:id="@+id/routePlan"
+        android:orderInCategory="102"
+        android:title="@string/routePlan">
+        <menu>
+            <item
+                android:id="@+id/warkRoutePlan"
+                android:orderInCategory="100"
+                android:title="步行路线规划"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/carRoutePlan"
+                android:orderInCategory="100"
+                android:title="驾车路线规划"
+                app:showAsAction="never" />
+        </menu>
     </item>
 
 

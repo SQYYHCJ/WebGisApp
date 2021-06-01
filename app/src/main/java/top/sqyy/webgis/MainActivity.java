@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
         menulist.add(R.id.overlay);
         menulist.add(R.id.poiSerch);
         menulist.add(R.id.transForm);
+        menulist.add(R.id.routePlan);
 
         if (id == R.id.point ||id == R.id.line){
             setMyPosition();
@@ -287,10 +288,21 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.locationToCoor) {
             MapTools.locationToCoor(mBaiduMap, MainActivity.this);
             return true;
-        }else if (id == R.id.coorToLocation) {
+        }
+        if (id == R.id.coorToLocation) {
             MapTools.coorToLocation(mBaiduMap, MainActivity.this);
             return true;
         }
+        if (id == R.id.warkRoutePlan) {
+            MapTools.warkRoutePlan(mBaiduMap, MainActivity.this);
+            return true;
+        }
+        if (id == R.id.carRoutePlan) {
+            MapTools.carRoutePlan(mBaiduMap, MainActivity.this);
+            return true;
+        }
+
+
 
 
 
