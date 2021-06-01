@@ -202,6 +202,13 @@ public class MainActivity extends AppCompatActivity {
             mBaiduMap.setBaiduHeatMapEnabled(true);
             return true;
         }
+//        if (id == R.id.zbz) {
+//            //实例化UiSettings类对象
+//            //UiSettings mUiSettings = mBaiduMap.getUiSettings();
+//            //通过设置enable为true或false 选择是否显示指南针
+//            mBaiduMap.getUiSettings().setCompassEnabled(true);
+//            return true;
+//        }
         if (id == R.id.drawPoint){
             MapTools.drawPoint(mBaiduMap);
             return true;

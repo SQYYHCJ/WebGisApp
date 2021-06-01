@@ -32,6 +32,10 @@
                 android:id="@+id/rlType"
                 android:orderInCategory="101"
                 android:title="@string/rlType"/>
+<!--            <item-->
+<!--                android:id="@+id/zbz"-->
+<!--                android:orderInCategory="101"-->
+<!--                android:title="指南针"/>-->
         </menu>
     </item>
 
