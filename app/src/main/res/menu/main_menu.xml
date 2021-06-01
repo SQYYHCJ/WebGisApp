@@ -145,6 +145,16 @@
                 android:orderInCategory="100"
                 android:title="@string/customHeatMap"
                 app:showAsAction="never" />
+            <item
+                android:id="@+id/batchAdd"
+                android:orderInCategory="100"
+                android:title="@string/batchAdd"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/batchDelete"
+                android:orderInCategory="100"
+                android:title="@string/batchDelete"
+                app:showAsAction="never" />
         </menu>
 
     </item>

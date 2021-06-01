@@ -249,6 +249,13 @@ public class MainActivity extends AppCompatActivity {
             MapTools.customHeatMap(mBaiduMap,mCustomHeatMap);
             return true;
         }
+        if (id == R.id.batchAdd) {
+            MapTools.batchAdd(mBaiduMap);
+            return true;
+        }else if (id == R.id.batchDelete) {
+            MapTools.batchDelete(mBaiduMap);
+            return true;
+        }
 
 
 

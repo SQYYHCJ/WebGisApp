@@ -27,4 +27,6 @@
     <string name="panJump">跳跃点</string>
     <string name="groundOvelay">图片覆盖物</string>
     <string name="customHeatMap">自定义热力图</string>
+    <string name="batchAdd">批量添加OverLay</string>
+    <string name="batchDelete">批量删除OverLay</string>
 </resources>

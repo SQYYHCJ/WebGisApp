@@ -379,4 +379,38 @@ public class MapTools {
         mBaiduMap.addHeatMap(mCustomHeatMap);
 
     }
+
+    //批量添加OverLay
+    public static void batchAdd(BaiduMap mBaiduMap) {
+        mBaiduMap.clear();
+        //创建OverlayOptions的集合
+        List<OverlayOptions> options = new ArrayList<OverlayOptions>();
+        //构造大量坐标数据
+        LatLng point1 = new LatLng(30.527123, 114.405671);
+        LatLng point2 = new LatLng(30.526779, 114.405241);
+        LatLng point3 = new LatLng(30.526149, 114.40724);
+        BitmapDescriptor bitmap = BitmapDescriptorFactory
+                .fromResource(R.drawable.icon_marka);
+        //创建OverlayOptions属性
+        OverlayOptions option1 =  new MarkerOptions()
+                .position(point1)
+                .icon(bitmap);
+        OverlayOptions option2 =  new MarkerOptions()
+                .position(point2)
+                .icon(bitmap);
+        OverlayOptions option3 =  new MarkerOptions()
+                .position(point3)
+                .icon(bitmap);
+        //将OverlayOptions添加到list
+        options.add(option1);
+        options.add(option2);
+        options.add(option3);
+        //在地图上批量添加
+        mBaiduMap.addOverlays(options);
+    }
+    //批量删除OverLay
+    public static void batchDelete(BaiduMap mBaiduMap) {
+        //清除地图上的所有覆盖物
+        mBaiduMap.clear();
+    }
 }
