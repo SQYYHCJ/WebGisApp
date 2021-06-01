@@ -3,12 +3,42 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
+    <item
+        android:id="@+id/show"
+        android:orderInCategory="102"
+        android:title="显示操作">
+        <menu>
+            <item
+                android:id="@+id/showLocation"
+                android:orderInCategory="101"
+                android:title="显示定位"/>
+            <item
+                android:id="@+id/ptType"
+                android:orderInCategory="101"
+                android:title="普通地图"/>
+            <item
+                android:id="@+id/wxType"
+                android:orderInCategory="101"
+                android:title="卫星地图"/>
+            <item
+                android:id="@+id/kbType"
+                android:orderInCategory="101"
+                android:title="空白地图"/>
+            <item
+                android:id="@+id/lkType"
+                android:orderInCategory="101"
+                android:title="实时路况图图"/>
+            <item
+                android:id="@+id/rlType"
+                android:orderInCategory="101"
+                android:title="热力图"/>
+        </menu>
+    </item>
 
     <item
-        android:id="@+id/point"
-        android:orderInCategory="102"
-        android:title="点操作">
+    android:id="@+id/point"
+    android:orderInCategory="102"
+    android:title="点操作">
 
         <menu>
             <item
@@ -46,7 +76,28 @@
                 android:id="@+id/drawClickLine"
                 android:orderInCategory="101"
                 android:title="点击线事件"/>
+            <item
+                android:id="@+id/drawHuLine"
+                android:orderInCategory="101"
+                android:title="绘制弧线"/>
         </menu>
+    </item>
+    <item
+        android:id="@+id/polygon"
+        android:orderInCategory="102"
+        android:title="面操作">
+        >
+       <menu>
+           <item
+               android:id="@+id/drowPolygon"
+               android:orderInCategory="101"
+               android:title="绘制面"/>
+           <item
+               android:id="@+id/drawCircle"
+               android:orderInCategory="101"
+               android:title="绘制圆"/>
+
+       </menu>
     </item>
 
 
