@@ -20,8 +20,19 @@ import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.Overlay;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.map.UiSettings;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.SearchResult;
+import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
+import com.baidu.mapapi.search.poi.PoiCitySearchOption;
+import com.baidu.mapapi.search.poi.PoiDetailResult;
+import com.baidu.mapapi.search.poi.PoiDetailSearchResult;
+import com.baidu.mapapi.search.poi.PoiIndoorResult;
+import com.baidu.mapapi.search.poi.PoiResult;
+import com.baidu.mapapi.search.poi.PoiSearch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
 //        mLocationClient.start();
 
     }
+
+
     private void setMyPosition() {
         currentLocation = new LatLng(30.52632, 114.407898);
         MapStatus mMapStatus = new MapStatus.Builder().target(currentLocation).zoom(5).build();
@@ -140,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
         menulist.add(R.id.show);
         menulist.add(R.id.adde);
         menulist.add(R.id.overlay);
+        menulist.add(R.id.poiSerch);
+
         if (id == R.id.point ||id == R.id.line){
             setMyPosition();
             return true;
@@ -256,13 +271,73 @@ public class MainActivity extends AppCompatActivity {
             MapTools.batchDelete(mBaiduMap);
             return true;
         }
-
+        if (id == R.id.citySearch) {
+            MapTools.citySearch(mBaiduMap);
+            return true;
+        }
+        if (id == R.id.nearSearch) {
+            MapTools.nearSearch(mBaiduMap);
+            return true;
+        }
+        if (id == R.id.squareSearch) {
+            MapTools.squareSearch(mBaiduMap);
+            return true;
+        }
 
 
 
 
         return super.onOptionsItemSelected(item);
     }
+//    private void citySerchTest(){
+//       PoiSearch mPoiSerch= PoiSearch.newInstance();
+//        OnGetPoiSearchResultListener listener = new OnGetPoiSearchResultListener() {
+//            @Override
+//            public void onGetPoiResult(PoiResult poiResult) {
+////                if (poiResult.error== SearchResult.ERRORNO.NO_ERROR){
+////                    mBaiduMap.clear();
+////                    PoiOverlay poiOverlay= new PoiOverlay(mBaiduMap);
+////                    poiOverlay.setData(poiResult);
+////                    poiOverlay.addToMap();
+////                    poiOverlay.zoomToSpan();
+////
+////                }
+//                LatLng llText = new LatLng(30.526779, 114.405241);
+//
+//                //构建TextOptions对象
+//                OverlayOptions mTextOptions = new TextOptions()
+//                        .text(String.valueOf(poiResult.error)) //文字内容
+//                        .bgColor(0xAAFFFF00) //背景色
+//                        .fontSize(24) //字号
+//                        .fontColor(0xFFFF00FF) //文字颜色
+//                        .rotate(-30) //旋转角度
+//                        .position(llText);
+//                //在地图上显示文字覆盖物
+//                Overlay mText = mBaiduMap.addOverlay(mTextOptions);
+//            }
+//
+//            @Override
+//            public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
+//
+//            }
+//
+//            @Override
+//            public void onGetPoiDetailResult(PoiDetailSearchResult poiDetailSearchResult) {
+//
+//            }
+//
+//            @Override
+//            public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
+//
+//            }
+//        };
+//
+//        mPoiSerch.setOnGetPoiSearchResultListener(listener);
+//        PoiCitySearchOption poiCitySearchOption = new PoiCitySearchOption();
+//        mPoiSerch.searchInCity(new PoiCitySearchOption().city("北京").keyword("超市").pageNum(100));
+//        mPoiSerch.destroy();
+//
+//    }
 
     private void showMylocation() {
 

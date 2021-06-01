@@ -29,4 +29,9 @@
     <string name="customHeatMap">自定义热力图</string>
     <string name="batchAdd">批量添加OverLay</string>
     <string name="batchDelete">批量删除OverLay</string>
+    <string name="poiSerch">POI检索</string>
+    <string name="overlay">OverLay</string>
+    <string name="citySearch">城市内搜索</string>
+    <string name="nearSearch">周边搜索</string>
+    <string name="squareSearch">矩形搜索</string>
 </resources>

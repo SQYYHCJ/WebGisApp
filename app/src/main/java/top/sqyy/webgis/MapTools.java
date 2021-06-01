@@ -29,6 +29,16 @@ import com.baidu.mapapi.map.Stroke;
 import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
+import com.baidu.mapapi.search.core.SearchResult;
+import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
+import com.baidu.mapapi.search.poi.PoiBoundSearchOption;
+import com.baidu.mapapi.search.poi.PoiCitySearchOption;
+import com.baidu.mapapi.search.poi.PoiDetailResult;
+import com.baidu.mapapi.search.poi.PoiDetailSearchResult;
+import com.baidu.mapapi.search.poi.PoiIndoorResult;
+import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
+import com.baidu.mapapi.search.poi.PoiResult;
+import com.baidu.mapapi.search.poi.PoiSearch;
 
 
 import java.util.ArrayList;
@@ -412,5 +422,137 @@ public class MapTools {
     public static void batchDelete(BaiduMap mBaiduMap) {
         //清除地图上的所有覆盖物
         mBaiduMap.clear();
+    }
+
+    //c城市内搜索
+    public static void citySearch(final BaiduMap mBaiduMap) {
+        //清除地图上的所有覆盖物
+        mBaiduMap.clear();
+        PoiSearch mPoiSearch = PoiSearch.newInstance();
+        OnGetPoiSearchResultListener listener = new OnGetPoiSearchResultListener() {
+            @Override
+            public void onGetPoiResult(PoiResult poiResult) {
+                if (poiResult.error == SearchResult.ERRORNO.NO_ERROR) {
+                    mBaiduMap.clear();
+                    //创建PoiOverlay对象
+
+                    PoiOverlay poiOverlay = new PoiOverlay(mBaiduMap);
+                    //设置Poi检索数据
+                    poiOverlay.setData(poiResult);
+                    //将poiOverlay添加至地图并缩放至合适级别
+                    poiOverlay.addToMap();
+                    poiOverlay.zoomToSpan();
+                }
+            }
+            @Override
+            public void onGetPoiDetailResult(PoiDetailSearchResult poiDetailSearchResult) {
+
+            }
+            @Override
+            public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
+
+            }
+            //废弃
+            @Override
+            public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
+
+            }
+        };
+        mPoiSearch.setOnGetPoiSearchResultListener(listener);
+        /**
+         *  PoiCiySearchOption 设置检索属性
+         *  city 检索城市
+         *  keyword 检索内容关键字
+         *  pageNum 分页页码
+         */
+        mPoiSearch.searchInCity(new PoiCitySearchOption()
+                .city("武汉") //必填
+                .keyword("超市") //必填
+                .pageNum(10));
+        mPoiSearch.destroy();
+    }
+    //周边搜索
+    public static void nearSearch(final BaiduMap mBaiduMap) {
+        //清除地图上的所有覆盖物
+        mBaiduMap.clear();
+        PoiSearch mPoiSearch = PoiSearch.newInstance();
+        OnGetPoiSearchResultListener listener = new OnGetPoiSearchResultListener() {
+            @Override
+            public void onGetPoiResult(PoiResult poiResult) {
+                if (poiResult.error == SearchResult.ERRORNO.NO_ERROR) {
+                    mBaiduMap.clear();
+                    //创建PoiOverlay对象
+                    PoiOverlay poiOverlay = new PoiOverlay(mBaiduMap);
+                    //设置Poi检索数据
+                    poiOverlay.setData(poiResult);
+                    //将poiOverlay添加至地图并缩放至合适级别
+                    poiOverlay.addToMap();
+                    poiOverlay.zoomToSpan();
+                }
+            }
+            @Override
+            public void onGetPoiDetailResult(PoiDetailSearchResult poiDetailSearchResult) {
+
+            }
+            @Override
+            public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
+
+            }
+            //废弃
+            @Override
+            public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
+
+            }
+        };
+        mPoiSearch.setOnGetPoiSearchResultListener(listener);
+
+        mPoiSearch.searchNearby(new PoiNearbySearchOption()
+                .location(new LatLng(30.526779, 114.405241))
+                .radius(10000).keyword("超市").pageNum(10));
+        mPoiSearch.destroy();
+    }
+    //矩形搜索
+    public static void squareSearch(final BaiduMap mBaiduMap) {
+        //清除地图上的所有覆盖物
+        mBaiduMap.clear();
+        PoiSearch mPoiSearch = PoiSearch.newInstance();
+        OnGetPoiSearchResultListener listener = new OnGetPoiSearchResultListener() {
+            @Override
+            public void onGetPoiResult(PoiResult poiResult) {
+                if (poiResult.error == SearchResult.ERRORNO.NO_ERROR) {
+                    mBaiduMap.clear();
+                    //创建PoiOverlay对象
+                    PoiOverlay poiOverlay = new PoiOverlay(mBaiduMap);
+                    //设置Poi检索数据
+                    poiOverlay.setData(poiResult);
+                    //将poiOverlay添加至地图并缩放至合适级别
+                    poiOverlay.addToMap();
+                    poiOverlay.zoomToSpan();
+                }
+            }
+            @Override
+            public void onGetPoiDetailResult(PoiDetailSearchResult poiDetailSearchResult) {
+
+            }
+            @Override
+            public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
+
+            }
+            //废弃
+            @Override
+            public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
+
+            }
+        };
+        mPoiSearch.setOnGetPoiSearchResultListener(listener);
+        LatLngBounds searchBounds = new LatLngBounds.Builder()
+                .include(new LatLng( 30.530515, 114.400124))
+                .include(new LatLng( 30.521742, 114.414515))
+                .build();
+
+        mPoiSearch.searchInBound(new PoiBoundSearchOption()
+                .bound(searchBounds)
+                .keyword("美食"));
+        mPoiSearch.destroy();
     }
 }

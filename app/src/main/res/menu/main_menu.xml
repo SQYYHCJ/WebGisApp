@@ -133,7 +133,7 @@
     <item
         android:id="@+id/overlay"
         android:orderInCategory="102"
-        android:title="OverLay">
+        android:title="@string/overlay">
         <menu>
             <item
                 android:id="@+id/groundOvelay"
@@ -156,6 +156,31 @@
                 android:title="@string/batchDelete"
                 app:showAsAction="never" />
         </menu>
+
+    </item>
+    <item
+        android:id="@+id/poiSerch"
+        android:orderInCategory="102"
+        android:title="@string/poiSerch">
+        <menu>
+            <item
+                android:id="@+id/citySearch"
+                android:orderInCategory="100"
+                android:title="@string/citySearch"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/nearSearch"
+                android:orderInCategory="100"
+                android:title="@string/nearSearch"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/squareSearch"
+                android:orderInCategory="100"
+                android:title="@string/squareSearch"
+                app:showAsAction="never" />
+        </menu>
+
+
 
     </item>
 
