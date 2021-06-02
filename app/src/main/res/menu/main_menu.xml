@@ -38,7 +38,7 @@
 <!--                android:title="指南针"/>-->
         </menu>
     </item>
-
+**
     <item
     android:id="@+id/point"
     android:orderInCategory="102"

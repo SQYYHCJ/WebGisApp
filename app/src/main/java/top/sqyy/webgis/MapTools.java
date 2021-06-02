@@ -240,6 +240,10 @@ public class MapTools {
         mBaiduMap.addOverlay(mPolygonOptions);
     }
     public static void setZoom(BaiduMap mBaiduMap ,LatLng currentLocation) {
+        if (mBaiduMap.getMapType()==BaiduMap.MAP_TYPE_NONE){
+            mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
+        }
+
         mBaiduMap.clear();
         currentLocation = new LatLng(30.52632, 114.407898);
         MapStatus mMapStatus = new MapStatus.Builder().target(currentLocation).zoom(18).build();

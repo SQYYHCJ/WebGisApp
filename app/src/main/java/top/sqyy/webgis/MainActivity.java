@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         mMapView.showZoomControls(true);
         mLocationClient = new LocationClient(this);
         initMap();
-        setMyPosition();
+        MapTools.setZoom(mBaiduMap,currentLocation);
 
 
 ////        显示比例尺
@@ -152,12 +152,17 @@ public class MainActivity extends AppCompatActivity {
         menulist.add(R.id.polygon);
         menulist.add(R.id.show);
         menulist.add(R.id.adde);
-        menulist.add(R.id.overlay);
+//        menulist.add(R.id.overlay);
         menulist.add(R.id.poiSerch);
         menulist.add(R.id.transForm);
         menulist.add(R.id.routePlan);
+        menulist.add(R.id.point);
 
-        if (id == R.id.point ||id == R.id.line){
+        if (id == R.id.line){
+//            MapTools.ptType(mBaiduMap);
+            if (mBaiduMap.getMapType()==BaiduMap.MAP_TYPE_NONE){
+                mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
+            }
             setMyPosition();
             return true;
         }
